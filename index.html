@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interior Design Cost Estimator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .primary-text {
+            color: #ab0707;
+        }
+        .primary-bg {
+            background-color: #ab0707;
+        }
+        .primary-bg-light {
+            background-color: rgba(171, 7, 7, 0.1);
+        }
+        .primary-bg-medium {
+            background-color: rgba(171, 7, 7, 0.2);
+        }
+        .primary-button {
+            background-color: #ab0707;
+        }
+        .primary-button:hover {
+            background-color: #8a0606;
+        }
+        .primary-bg-light-hover:hover {
+            background-color: rgba(171, 7, 7, 0.1);
+        }
+        .hello-kitty-shadow {
+            box-shadow: 0 4px 6px -1px rgba(171, 7, 7, 0.4);
+        }
+        .hero-bg {
+            background: linear-gradient(to right, #ab0707, #130101);
+        }
+        @media print {
+            body * { visibility: hidden; }
+            #estimate, #estimate * { visibility: visible; }
+            #estimate { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/widecanvas-d0dd4.appspot.com/o/logos%2Finterior%20lOGO.png?alt=media&token=776f5ba2-98cd-4e30-9c1c-f98a302b5f2a" alt="Interior Design Quote" class="h-12 w-auto">
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary-text">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-primary-text">Services</a>
+                    <a href="#" class="text-gray-700 hover:text-primary-text">Contact</a>
+                </nav>
+                 <div class="flex items-center space-x-4">
+                     <button class="md:hidden text-gray-700" onclick="toggleMenu()"><i class="bi bi-list text-2xl"></i></button>
+                     <a href="#" class="primary-button text-white px-4 py-2 rounded">Get Started</a>
+                 </div>
+            </div>
+        </div>
+     </header>
+
+     <!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+         <nav class="px-4 py-4 space-y-2">
+             <a href="#" class="block text-gray-700 hover:text-primary-text">Home</a>
+             <a href="#" class="block text-gray-700 hover:text-primary-text">Services</a>
+             <a href="#" class="block text-gray-700 hover:text-primary-text">Contact</a>
+         </nav>
+     </div>
+
+     <!-- Hero Section -->
+     <section class="hero-bg text-white py-20">
+         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 class="text-4xl md:text-6xl font-bold mb-4">Interior Design Cost Estimator</h1>
+              <p class="text-xl mb-8">Estimate the cost of your interior work</p>
+             <div class="bg-white p-6 rounded-lg shadow-lg">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                          <label class="block text-gray-700 mb-2">Room Types (select multiple)</label>
+                         <div class="text-left mb-4">
+                             <label class="flex items-center mb-2">
+                                 <input type="checkbox" id="selectAllRooms" class="mr-2"> Select All Rooms
+                             </label>
+                             <div id="rooms" class="grid grid-cols-2 gap-2">
+                                 <label class="flex items-center"><input type="checkbox" value="Kitchen" class="mr-2"> Kitchen</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Living Room" class="mr-2"> Living Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Bedroom" class="mr-2"> Bedroom</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Bathroom" class="mr-2"> Bathroom</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Full Home" class="mr-2"> Full Home</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Dining Room" class="mr-2"> Dining Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Hallway" class="mr-2"> Hallway</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Balcony" class="mr-2"> Balcony</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Study Room" class="mr-2"> Study Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Kids Room" class="mr-2"> Kids Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Master Bedroom" class="mr-2"> Master Bedroom</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Guest Room" class="mr-2"> Guest Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Pooja Room" class="mr-2"> Pooja Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Utility Room" class="mr-2"> Utility Room</label>
+                                 <label class="flex items-center"><input type="checkbox" value="Terrace" class="mr-2"> Terrace</label>
+                              </div>
+                          </div>
+                          <label class="block text-gray-700 mb-2">Area (in square feet)</label>
+                          <input type="number" id="area" class="w-full px-3 py-2 border rounded mb-4" placeholder="Enter area">
+                          <label class="block text-gray-700 mb-2">Areas of Interior Work</label>
+                         <div class="text-left mb-4">
+                             <label class="flex items-center mb-2"><input type="checkbox" value="Walls" class="mr-2"> Walls</label>
+                             <label class="flex items-center mb-2"><input type="checkbox" value="Ceiling" class="mr-2"> Ceiling</label>
+                             <label class="flex items-center mb-2"><input type="checkbox" value="Floor" class="mr-2"> Floor</label>
+                             <label class="flex items-center mb-2"><input type="checkbox" value="Furniture" class="mr-2"> Furniture</label>
+                             <label class="flex items-center mb-2"><input type="checkbox" value="Lighting" class="mr-2"> Lighting</label>
+                             <label class="flex items-center mb-2"><input type="checkbox" value="Decor" class="mr-2"> Decor</label>
+                         </div>
+                     </div>
+                     <div>
+                          <label class="block text-gray-700 mb-2">Materials (select and set price per sq ft)</label>
+                          <div id="materials" class="grid grid-cols-1 gap-2 mb-4">
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Plywood" class="mr-2"> Plywood <input type="number" class="w-20 px-2 py-1 border rounded" value="10" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="HDHMR" class="mr-2"> HDHMR <input type="number" class="w-20 px-2 py-1 border rounded" value="15" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="MDF" class="mr-2"> MDF <input type="number" class="w-20 px-2 py-1 border rounded" value="12" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Laminate" class="mr-2"> Laminate <input type="number" class="w-20 px-2 py-1 border rounded" value="20" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Veneer" class="mr-2"> Veneer <input type="number" class="w-20 px-2 py-1 border rounded" value="25" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Glass" class="mr-2"> Glass <input type="number" class="w-20 px-2 py-1 border rounded" value="30" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Metal" class="mr-2"> Metal <input type="number" class="w-20 px-2 py-1 border rounded" value="35" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Fabric" class="mr-2"> Fabric <input type="number" class="w-20 px-2 py-1 border rounded" value="18" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Leather" class="mr-2"> Leather <input type="number" class="w-20 px-2 py-1 border rounded" value="40" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Wood" class="mr-2"> Wood <input type="number" class="w-20 px-2 py-1 border rounded" value="50" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Stone" class="mr-2"> Stone <input type="number" class="w-20 px-2 py-1 border rounded" value="45" placeholder="$/sq ft"></label>
+                              <label class="flex items-center justify-between"><input type="checkbox" value="Tile" class="mr-2"> Tile <input type="number" class="w-20 px-2 py-1 border rounded" value="22" placeholder="$/sq ft"></label>
+                          </div>
+
+                     </div>
+                 </div>
+                 <button onclick="calculateQuote()" class="primary-button text-white px-6 py-2 rounded w-full mb-4">Get Detailed Estimate</button>
+                 <button onclick="printEstimate()" class="bg-gray-500 text-white px-6 py-2 rounded w-full">Print Estimate</button>
+             </div>
+             <div id="estimate" class="mt-6 bg-white text-gray-800 p-4 rounded-lg shadow-lg text-left max-w-4xl mx-auto"></div>
+         </div>
+     </section>
+
+     <!-- Services Section -->
+     <section class="py-16">
+         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <h2 class="text-3xl font-bold text-center mb-12">Our Interior Design Services</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                 <div class="text-center">
+                     <img src="https://via.placeholder.com/150" alt="Modular Kitchen" class="mx-auto mb-4">
+                     <h3 class="text-xl font-semibold">Modular Kitchen</h3>
+                     <p class="text-gray-600">Custom designs for your space</p>
+                 </div>
+                 <div class="text-center">
+                     <img src="https://via.placeholder.com/150" alt="Storage and wardrobe" class="mx-auto mb-4">
+                     <h3 class="text-xl font-semibold">Storage and Wardrobe</h3>
+                     <p class="text-gray-600">Organized storage solutions</p>
+                 </div>
+                 <div class="text-center">
+                     <img src="https://via.placeholder.com/150" alt="Living Room" class="mx-auto mb-4">
+                     <h3 class="text-xl font-semibold">Living Room</h3>
+                     <p class="text-gray-600">Comfortable and stylish</p>
+                 </div>
+                 <div class="text-center">
+                     <img src="https://via.placeholder.com/150" alt="Space Saving Furniture" class="mx-auto mb-4">
+                     <h3 class="text-xl font-semibold">Space Saving Furniture</h3>
+                     <p class="text-gray-600">Maximize your space</p>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+     <!-- Footer -->
+     <footer class="bg-gray-800 text-white py-12">
+         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                 <div>
+                     <h3 class="font-semibold mb-4">Interior Design Quote</h3>
+                     <p>Get your personalized quote in a minute</p>
+                 </div>
+                 <div>
+                     <h3 class="font-semibold mb-4">Services</h3>
+                     <ul class="space-y-2">
+                         <li><a href="#" class="hover:text-primary-text">Kitchen</a></li>
+                         <li><a href="#" class="hover:text-primary-text">Living Room</a></li>
+                         <li><a href="#" class="hover:text-primary-text">Bedroom</a></li>
+                         <li><a href="#" class="hover:text-primary-text">Bathroom</a></li>
+                     </ul>
+                 </div>
+                 <div>
+                     <h3 class="font-semibold mb-4">Contact</h3>
+                     <ul class="space-y-2">
+                         <li><a href="#" class="hover:text-primary-text">Email</a></li>
+                         <li><a href="#" class="hover:text-primary-text">Phone</a></li>
+                         <li><a href="#" class="hover:text-primary-text">Support</a></li>
+                     </ul>
+                 </div>
+                 <div>
+                     <h3 class="font-semibold mb-4">Follow Us</h3>
+                     <div class="flex space-x-4">
+                         <a href="#" class="hover:text-primary-text"><i class="bi bi-instagram"></i></a>
+                         <a href="#" class="hover:text-primary-text"><i class="bi bi-youtube"></i></a>
+                         <a href="#" class="hover:text-primary-text"><i class="bi bi-pinterest"></i></a>
+                         <a href="#" class="hover:text-primary-text"><i class="bi bi-linkedin"></i></a>
+                         <a href="#" class="hover:text-primary-text"><i class="bi bi-facebook"></i></a>
+                     </div>
+                 </div>
+             </div>
+             <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                 <p>&copy; 2023 Interior Design Quote. All rights reserved.</p>
+             </div>
+         </div>
+     </footer>
+
+     <script>
+         function toggleMenu() {
+             document.getElementById('mobile-menu').classList.toggle('hidden');
+         }
+
+         document.getElementById('selectAllRooms').addEventListener('change', function() {
+             const checkboxes = document.querySelectorAll('#rooms input[type="checkbox"]');
+             checkboxes.forEach(cb => cb.checked = this.checked);
+         });
+
+          function calculateQuote() {
+              const area = parseFloat(document.getElementById('area').value);
+              const rooms = Array.from(document.querySelectorAll('#rooms input:checked')).map(cb => cb.value);
+              const areas = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).filter(cb => ['Walls', 'Ceiling', 'Floor', 'Furniture', 'Lighting', 'Decor'].includes(cb.value)).map(cb => cb.value);
+
+              if (isNaN(area) || area <= 0) {
+                  document.getElementById('estimate').innerHTML = '<p class="text-red-500">Please enter a valid area.</p>';
+                  return;
+              }
+              if (rooms.length === 0) {
+                  document.getElementById('estimate').innerHTML = '<p class="text-red-500">Please select at least one room type.</p>';
+                  return;
+              }
+
+              let total = 0;
+              let breakdown = '<h3 class="text-xl font-bold mb-4">Detailed Estimate</h3><ul class="space-y-2">';
+
+              breakdown += `<li>Rooms: ${rooms.join(', ')}</li>`;
+              breakdown += `<li>Areas: ${areas.join(', ')}</li>`;
+              breakdown += `<li>Area: ${area} sq ft</li>`;
+
+              let materialCost = 0;
+              let selectedMaterials = [];
+              document.querySelectorAll('#materials input[type="checkbox"]:checked').forEach(cb => {
+                  const label = cb.parentElement;
+                  const priceInput = label.querySelector('input[type="number"]');
+                  const price = parseFloat(priceInput.value) || 0;
+                  materialCost += price * area;
+                  selectedMaterials.push(`${cb.value} ($${price}/sq ft)`);
+              });
+
+              total += materialCost;
+              breakdown += `<li>Materials: ${selectedMaterials.join(', ')} - Total: $${materialCost.toFixed(2)}</li>`;
+
+               breakdown += `</ul><p class="text-2xl font-bold mt-4">Total Estimate: $${total.toFixed(2)}</p>`;
+               breakdown += '<div class="mt-4 flex space-x-2"><button onclick="shareOnFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Share on Facebook</button><button onclick="shareOnTwitter()" class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600">Share on Twitter</button><button onclick="printEstimate()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Print Estimate</button></div>';
+               document.getElementById('estimate').innerHTML = breakdown;
+          }
+
+         function printEstimate() {
+             const estimateContent = document.getElementById('estimate').innerHTML;
+             const printWindow = window.open('', '_blank');
+             printWindow.document.write(`
+                 <html>
+                 <head>
+                     <title>Interior Design Estimate</title>
+                     <style>
+                         body { font-family: Arial, sans-serif; margin: 20px; }
+                         h3 { color: #ab0707; }
+                         ul { list-style-type: none; }
+                         li { margin-bottom: 10px; }
+                         .total { font-size: 24px; font-weight: bold; }
+                         @media print { body { margin: 0; } }
+                     </style>
+                 </head>
+                 <body>
+                     <h1>Interior Design Estimate</h1>
+                     ${estimateContent}
+                     <p>Thank you for choosing our services!</p>
+                 <script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+                 </html>
